@@ -6,7 +6,9 @@ import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
 import GameOverScreen from "./screens/GameOverScreen";
 import { useFonts } from "expo-font";
-import AppLoading from "expo-app-loading";
+// import AppLoading from "expo-app-loading";
+// import * as SplashScreen from "expo-splash-screen";
+import { SplashScreen } from 'expo';
 
 export default function App() {
   const [userNumber, setUserNumber] = useState();
@@ -18,9 +20,15 @@ export default function App() {
     "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
   });
 
+  // if (!fontsLoaded) {
+  //   return <AppLoading />;
+  // }
+
+
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return null; // or return a loading indicator if desired
   }
+
 
   function pickedNumberHandler(pickedNumber) {
     setUserNumber(pickedNumber);
@@ -29,7 +37,7 @@ export default function App() {
 
   function gameOverHandler(numberOfRounds) {
     setGameIsOver(true);
-    setGuessRounds(numberOfRounds)
+    setGuessRounds(numberOfRounds);
   }
 
   function startNewGameHandler() {
